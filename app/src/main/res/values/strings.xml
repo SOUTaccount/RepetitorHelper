@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RepetitorHelper</string>
+    <string name="title_time_table">Time table</string>
+    <string name="title_students">Students</string>
+    <string name="title_accounting_class">Accounting class</string>
+    <string name="name_student">Имя</string>
+    <string name="surname_student">Фамилия</string>
+    <string name="phone_student">Номер телефона</string>
+    <string name="place_of_class">Формат обучения:</string>
+    <string name="count_of_class">Количество занятий в месяц</string>
+    <string name="price_of_class">Стоимость занятия</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
