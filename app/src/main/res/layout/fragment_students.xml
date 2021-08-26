@@ -14,9 +14,10 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
+        android:id="@+id/btn_add_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_add_student">
+        android:text="@string/btn_new_student">
 
     </Button>
 
