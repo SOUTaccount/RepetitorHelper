@@ -9,6 +9,14 @@
     <string name="place_of_class">Формат обучения:</string>
     <string name="btn_save_student">Добавить ученика:</string>
     <string name="btn_new_student">Новый ученик</string>
+    <string name="tv_count_class_title">Количество занятий в месяц: </string>
+    <string name="tv_price_class_title">Стоимость 1 занятия: </string>
+    <string name="tv_income_title">Доход от ученика в месяц: </string>
+    <string name="tv_class_missed_title_profile">Пропущено занятий: </string>
+    <string name="btn_missed_class">Занятие пропущено</string>
+    <string name="btn_missed_class_clear">Сброс</string>
+    <string name="btn_list_theme">Список изучаемых тем</string>
+    <string name="btn_homework">Домашнее задание</string>
     <string name="count_of_class">Количество занятий в месяц</string>
     <string name="price_of_class">Стоимость занятия</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

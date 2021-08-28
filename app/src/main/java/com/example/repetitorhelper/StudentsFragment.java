@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,8 @@ public class StudentsFragment extends Fragment {
     Button btnAddStudent;
     RecyclerView rvStudents;
     SQLBaseStudents sqlBaseStudents;
-    ArrayList<String> students;
+    ArrayList<String> studentsNames;
+    ArrayList<String> studentsSurnames;
     StudentsFragmentAdapter studentsFragmentAdapter;
     public StudentsFragment() {
     }
@@ -59,8 +61,9 @@ public class StudentsFragment extends Fragment {
         super.onResume();
     }
     public void setAdapterWithNames (){
-        students = sqlBaseStudents.getAllNames();
-        studentsFragmentAdapter = new StudentsFragmentAdapter(getContext(),students);
+        studentsNames = sqlBaseStudents.getAllNames();
+        studentsSurnames = sqlBaseStudents.getAllSurnames();
+        studentsFragmentAdapter = new StudentsFragmentAdapter(getContext(),studentsNames,studentsSurnames);
         rvStudents.setAdapter(studentsFragmentAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvStudents.setLayoutManager(linearLayoutManager);

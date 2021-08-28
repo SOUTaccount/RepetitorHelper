@@ -66,6 +66,18 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
         db.close();
         return allNames;
     }
+    public ArrayList<String> getAllSurnames(){
+        ArrayList<String> allNames=new ArrayList<>();
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_SURNAME},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_SURNAME);
+            allNames.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return allNames;
+    }
     public String getSurnames(){
         String surnames;
         SQLiteDatabase db=this.getReadableDatabase();
@@ -119,6 +131,58 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
         checkable = cursor.getInt(0);
         Log.d(LOG_TAG,"my count = " + checkable);
         return checkable;
+    }
+    public String getPhoneNum(String surname){
+        String phoneNum;
+        String selection = COLUMN_SURNAME + "= ?";
+        String [] selectionArgs = new String [] {surname};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_NUMBER},selection,selectionArgs,null,null,null);
+        cursor.moveToFirst();
+        int index = cursor.getColumnIndex(COLUMN_NUMBER);
+        phoneNum = cursor.getString(index);
+        cursor.close();
+        db.close();
+        return phoneNum;
+    }
+    public String getCountClass(String surname){
+        String countClass;
+        String selection = COLUMN_SURNAME + "= ?";
+        String [] selectionArgs = new String [] {surname};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_COUNT},selection,selectionArgs,null,null,null);
+        cursor.moveToFirst();
+        int index = cursor.getColumnIndex(COLUMN_COUNT);
+        countClass = cursor.getString(index);
+        cursor.close();
+        db.close();
+        return countClass;
+    }
+    public String getPriceClass(String surname){
+        String priceClass;
+        String selection = COLUMN_SURNAME + "= ?";
+        String [] selectionArgs = new String [] {surname};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_PRICE},selection,selectionArgs,null,null,null);
+        cursor.moveToFirst();
+        int index = cursor.getColumnIndex(COLUMN_PRICE);
+        priceClass = cursor.getString(index);
+        cursor.close();
+        db.close();
+        return priceClass;
+    }
+    public String getTypeClass(String surname){
+        String typeClass;
+        String selection = COLUMN_SURNAME + "= ?";
+        String [] selectionArgs = new String [] {surname};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_TYPE},selection,selectionArgs,null,null,null);
+        cursor.moveToFirst();
+        int index = cursor.getColumnIndex(COLUMN_TYPE);
+        typeClass = cursor.getString(index);
+        cursor.close();
+        db.close();
+        return typeClass;
     }
     public void removeAll () {
         SQLiteDatabase db = this.getReadableDatabase();
