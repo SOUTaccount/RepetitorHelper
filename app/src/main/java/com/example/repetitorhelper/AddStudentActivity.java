@@ -38,11 +38,14 @@ public class AddStudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addDataInSql();
-                finish();
+                finish(); //завершаю работу активности
             }
         });
     }
-
+    /**
+     Выделение памяти под адаптер для спиннера и его привязка.
+     Добавление прослушивателей
+     */
     public void setAdapterForSpinner (Spinner spinner){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, placeOfClass);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -50,7 +53,7 @@ public class AddStudentActivity extends AppCompatActivity {
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                type = String.valueOf(parent.getItemAtPosition(position));
+                type = String.valueOf(parent.getItemAtPosition(position)); // записываю данные в стринг, чтобы передать в бд
             }
 
             @Override
@@ -59,7 +62,9 @@ public class AddStudentActivity extends AppCompatActivity {
             }
         };
     }
-
+    /**
+     Добавляем все данные из заполненных полей в бд
+     */
     public void addDataInSql (){
         sqlBaseStudents = new SQLBaseStudents(this);
         name = edtName.getText().toString();

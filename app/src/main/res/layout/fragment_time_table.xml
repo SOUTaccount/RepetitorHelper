@@ -1,17 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fl_time_table"
+    android:orientation="vertical"
     tools:context=".TimeTableFragment">
 
-    <TextView
-        android:id="@+id/tv_home"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_monday"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:text="@string/title_time_table"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="@string/monday"
+        android:textColor="#c96f53"
+        app:backgroundTint="#ffd0b0"
+        app:strokeColor="#c96f53"
+        app:strokeWidth="3dp" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_tuesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tuesday"
+        android:textColor="#c96f53"
+        app:backgroundTint="#ffd0b0"
+        app:strokeColor="#c96f53"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/btn_wednesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wednesday"
+        android:textColor="#c96f53"
+        app:backgroundTint="#ffd0b0"
+        app:strokeColor="#c96f53"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/btn_thursday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/thursday"
+        android:textColor="#c96f53"
+        app:backgroundTint="#ffd0b0"
+        app:strokeColor="#c96f53"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/btn_friday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/friday"
+        android:textColor="#c96f53"
+        app:backgroundTint="#ffd0b0"
+        app:strokeColor="#c96f53"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/btn_saturday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/saturday"
+        android:textColor="#c96f53"
+        app:backgroundTint="#ffd0b0"
+        app:strokeColor="#c96f53"
+        app:strokeWidth="3dp" />
+
+    <Button
+        android:id="@+id/btn_sunday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sunday"
+        android:textColor="#c96f53"
+        app:backgroundTint="#ffd0b0"
+        app:strokeColor="#c96f53"
+        app:strokeWidth="3dp" />
+
+</LinearLayout>

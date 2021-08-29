@@ -42,6 +42,11 @@ public class StudentsFragment extends Fragment {
         btnAddStudent = root.findViewById(R.id.btn_add_student);
         rvStudents = root.findViewById(R.id.rv_stundets);
         sqlBaseStudents = new SQLBaseStudents(getContext());
+        /**
+         Проверяем бд на наличие в ней данных, если они не null, тогда
+         привязываем адаптер и передаем в него данные из бд
+         Присваиваем слушателя, при нажатии на который открывается активность добавления ученика
+         */
         if (sqlBaseStudents.checkTable() != 0){
             setAdapterWithNames();
         }
@@ -57,9 +62,12 @@ public class StudentsFragment extends Fragment {
 
     @Override
     public void onResume() {
-        setAdapterWithNames();
+        setAdapterWithNames(); // опять присваиваем, для того, чтобы обновить данные
         super.onResume();
     }
+    /**
+     Получаем данные из бд, передаем их адаптеру
+     */
     public void setAdapterWithNames (){
         studentsNames = sqlBaseStudents.getAllNames();
         studentsSurnames = sqlBaseStudents.getAllSurnames();

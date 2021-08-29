@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@android:color/darker_gray"
+        android:background="#ffd0b0"
+        app:itemTextColor="#0E0E0E"
         app:menu="@menu/menu" />
 
 </LinearLayout>

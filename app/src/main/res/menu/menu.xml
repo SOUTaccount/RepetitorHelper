@@ -3,14 +3,17 @@
 
     <item
         android:id="@+id/navigation_time_table"
+        android:icon="@drawable/outline_format_list_numbered_black_24"
         android:title="@string/title_time_table" />
 
     <item
         android:id="@+id/navigation_students"
+        android:icon="@drawable/outline_perm_contact_calendar_black_24"
         android:title="@string/title_students" />
 
     <item
         android:id="@+id/navigation_accounting_class"
+        android:icon="@drawable/outline_price_check_black_24"
         android:title="@string/title_accounting_class" />
 
 </menu>

@@ -36,15 +36,15 @@ public class StudentsFragmentAdapter extends RecyclerView.Adapter<StudentsFragme
 
     @Override
     public void onBindViewHolder(@NonNull StudentsFragmentAdapter.MyViewHolder holder, int position) {
-        holder.tvStudentName.setText(studentsNames.get(position));
-        holder.tvStudentNumber.setText(String.valueOf(position + 1));
-        holder.tvStudentSurname.setText(studentsSurnames.get(position));
+        holder.tvStudentName.setText(studentsNames.get(position)); // имя ученика, которое получаем из переданного списка по позиции
+        holder.tvStudentNumber.setText(String.valueOf(position + 1)); // порядковый номер ученика, позиция + 1
+        holder.tvStudentSurname.setText(studentsSurnames.get(position)); // фамилия ученика, получаем из переданного списка по позиции
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,StudentProfileActivity.class);
-                intent.putExtra(EXTRA_SURNAME,holder.tvStudentSurname.getText());
-                intent.putExtra(EXTRA_NAME,holder.tvStudentName.getText());
+                intent.putExtra(EXTRA_SURNAME,holder.tvStudentSurname.getText()); //передаем в интент фамилию, для того, чтобы вытаскивать по ней данные из бд
+                intent.putExtra(EXTRA_NAME,holder.tvStudentName.getText()); //передаем в интент имя
                 context.startActivity(intent);
             }
         });

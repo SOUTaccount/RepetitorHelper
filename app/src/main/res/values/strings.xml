@@ -21,4 +21,11 @@
     <string name="price_of_class">Стоимость занятия</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test">Hello blank fragment</string>
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="sunday">Воскресенье</string>
 </resources>

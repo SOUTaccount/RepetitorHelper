@@ -36,11 +36,13 @@ public class StudentProfileActivity extends AppCompatActivity {
         tvPriceClassStudent = findViewById(R.id.tv_price_class_profile);
         tvTypeClass = findViewById(R.id.tv_type_of_class_profile);
         Intent intent = getIntent();
-        surname = intent.getStringExtra("surnames");
-        name = intent.getStringExtra("names");
+        surname = intent.getStringExtra("surnames"); // Получаем переданный в интент стринг
+        name = intent.getStringExtra("names"); // Получаем переданный в интент стринг
         setAllData();
 
-
+        /**
+         Присваиваем значения, которые берем из бд
+         */
     }
     public void setAllData(){
         tvSurnameStudent.setText(surname);
@@ -53,9 +55,9 @@ public class StudentProfileActivity extends AppCompatActivity {
         countClass = sqlBaseStudents.getCountClass(surname);
         priceClass = sqlBaseStudents.getPriceClass(surname);
         typeClass = sqlBaseStudents.getTypeClass(surname);
-        count = Integer.parseInt(countClass);
-        price = Integer.parseInt(priceClass);
-        income = count * price;
+        count = Integer.parseInt(countClass); //делаем интом количество занятий
+        price = Integer.parseInt(priceClass);//делаем интом цену занятия
+        income = count * price; // считаем прибыль за 1 месяц за 1 ученика
         incomeStr = String.valueOf(income);
         tvCountClassStudent.setText(countClass);
         tvPriceClassStudent.setText(priceClass);
