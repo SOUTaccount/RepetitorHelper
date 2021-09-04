@@ -28,4 +28,10 @@
     <string name="friday">Пятница</string>
     <string name="saturday">Суббота</string>
     <string name="sunday">Воскресенье</string>
+    <string name="money_img">money</string>
+    <string name="student_img">student</string>
+    <string name="profile_img">profile</string>
+    <string name="profile">Профиль</string>
+    <string name="description_accounting_class">Здесь вы можете отслеживать, а также вести учет не оплаченных и отмененных занятий.</string>
+    <string name="description_students">Добавляйте новых учеников, следите за их количеством и информацией о каждом из них</string>
 </resources>
