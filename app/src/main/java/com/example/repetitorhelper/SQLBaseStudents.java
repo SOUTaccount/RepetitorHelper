@@ -20,6 +20,7 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
     private static final String COLUMN_NUMBER="number";
     private static final String COLUMN_PRICE="price";
     private static final String COLUMN_COUNT="countClass";
+    private static final String COLUMN_COUNT_CANCEL="countCancelClass";
     private static final String COLUMN_TYPE="type";
     private static final String KEY_ID="_id";
     String LOG_TAG = "SqlLog";
@@ -30,7 +31,7 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query=String.format("CREATE TABLE " + DB_TABLE + "(" + KEY_ID
-                + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_SURNAME + " TEXT," + COLUMN_TYPE + " TEXT," + COLUMN_PRICE + " TEXT,"+ COLUMN_COUNT + " TEXT," + COLUMN_NUMBER + " TEXT" + ");");
+                + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_SURNAME + " TEXT," + COLUMN_TYPE + " TEXT," + COLUMN_PRICE + " TEXT,"+ COLUMN_COUNT + " TEXT,"+ COLUMN_COUNT_CANCEL + " TEXT," + COLUMN_NUMBER + " TEXT" + ");");
         db.execSQL(query);
 
     }
@@ -77,6 +78,30 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return allNames;
+    }
+    public ArrayList<String> getAllClassCounts(){
+        ArrayList<String> allCount=new ArrayList<>();
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_COUNT},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_COUNT);
+            allCount.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return allCount;
+    }
+    public ArrayList<String> getAllPriceOfClass(){
+        ArrayList<String> allPrice=new ArrayList<>();
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_PRICE},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_PRICE);
+            allPrice.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return allPrice;
     }
     public String getSurnames(){
         String surnames;

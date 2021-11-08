@@ -25,23 +25,41 @@
 
             </ImageView>
 
-            <LinearLayout
-                android:layout_width="149dp"
-                android:layout_height="49dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom|start"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_time_table_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="142dp"
+                    android:layout_height="34dp"
                     android:gravity="center"
                     android:text="@string/profile"
                     android:textColor="#FFFFFF"
                     android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.939" />
 
-            </LinearLayout>
+                <Button
+                    android:id="@+id/btn_refresh_month"
+                    android:layout_width="54dp"
+                    android:layout_height="53dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:background="@android:drawable/ic_popup_sync"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#60ABCD"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.983" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -53,17 +71,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/ll_time_table"
-            tools:context=".TimeTableFragment">
-
+            android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_stundets"
+                android:id="@+id/rv_time_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
             </androidx.recyclerview.widget.RecyclerView>
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

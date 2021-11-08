@@ -21,6 +21,8 @@
     <string name="price_of_class">Стоимость занятия</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test">Hello blank fragment</string>
+    <string name="count_class_time_table">Количество занятий:</string>
+    <string name="send_money">Оплатил</string>
     <string name="monday">Понедельник</string>
     <string name="tuesday">Вторник</string>
     <string name="wednesday">Среда</string>
@@ -32,6 +34,8 @@
     <string name="student_img">student</string>
     <string name="profile_img">profile</string>
     <string name="profile">Профиль</string>
+    <string name="add_cancel">Добавить пропуск</string>
+    <string name="cancel_class">Отменено занятие</string>
     <string name="description_accounting_class">Здесь вы можете отслеживать, а также вести учет не оплаченных и отмененных занятий.</string>
     <string name="description_students">Добавляйте новых учеников, следите за их количеством и информацией о каждом из них</string>
 </resources>
