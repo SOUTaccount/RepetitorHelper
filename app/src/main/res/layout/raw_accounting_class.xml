@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_accounting_class"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_margin="4dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_name_accounting_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginLeft="92dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.369">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_surname_accounting_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_send_money_time_table"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_name_accounting_class"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.372" />
+
+        <TextView
+            android:id="@+id/tv_cancel_count_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="116dp"
+            android:layout_marginLeft="116dp"
+            android:gravity="center_horizontal"
+            android:text="@string/count_cancel_class_title"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.892" />
+
+        <TextView
+            android:id="@+id/tv_cancel_count_accounting_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="168dp"
+            android:layout_marginRight="168dp"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_cancel_count_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.892" />
+
+        <Button
+            android:id="@+id/btn_add_cancel_accounting_class"
+            android:layout_width="82dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/buttonshape"
+            android:text="@string/btn_cancel_count"
+            android:textColor="#179CAE"
+            android:textSize="8sp"
+            app:backgroundTint="@null"
+            app:iconTint="#AF4B4B"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/tv_money_accounting_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_cancel_accounting_class" />
+
+        <ImageView
+            android:id="@+id/iV_accounting_class"
+            android:layout_width="73dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="#258880"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.555" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
