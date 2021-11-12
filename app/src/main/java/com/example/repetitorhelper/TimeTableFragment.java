@@ -24,8 +24,9 @@ import java.util.ArrayList;
 public class TimeTableFragment extends Fragment {
     RecyclerView rvTimeTable;
     SQLBaseStudents sqlBaseStudents;
-    ArrayList<String> alNames, alSurnames, alCount, alMoney, alSum;
-    int count, price, sum;
+    ArrayList<String> alNames, alSurnames, alCount, alMoney, alSum, alCountWithoutCancel;
+    ArrayList<Integer> alCountCancel, alColors;
+    int count, price, sum, countCancel;
 
     public TimeTableFragment() {
     }
@@ -45,14 +46,19 @@ public class TimeTableFragment extends Fragment {
         alSurnames = sqlBaseStudents.getAllSurnames();
         alCount = sqlBaseStudents.getAllClassCounts();
         alMoney = sqlBaseStudents.getAllPriceOfClass();
+        alCountCancel = sqlBaseStudents.getAllCancelClass();
+        alCountWithoutCancel = sqlBaseStudents.getAllClassCounts();
+        alColors = sqlBaseStudents.getColor();
             alSum = new ArrayList<>();
         for (int i = 0; i < alMoney.size();i++){
             count = Integer.parseInt(alCount.get(i));
             price = Integer.parseInt(alMoney.get(i));
-            sum = count*price;
+            countCancel = alCountCancel.get(i);
+            sum = (count*price) - (countCancel*price);
+            alCount.set(i,String.valueOf(count-countCancel));
             alSum.add(String.valueOf(sum));
         }
-        TimeTableAdapter timeTableAdapter = new TimeTableAdapter(getContext(),alNames,alCount,alSum,alSurnames);
+        TimeTableAdapter timeTableAdapter = new TimeTableAdapter(getContext(),alNames,alCount,alSum,alSurnames,alCountWithoutCancel,alColors);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvTimeTable.setAdapter(timeTableAdapter);
         rvTimeTable.setLayoutManager(linearLayoutManager);

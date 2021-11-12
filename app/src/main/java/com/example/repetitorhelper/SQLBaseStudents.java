@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
     private static final String COLUMN_COUNT="countClass";
     private static final String COLUMN_COUNT_CANCEL="countCancelClass";
     private static final String COLUMN_TYPE="type";
+    private static final String COLUMN_COLOR="color";
     private static final String KEY_ID="_id";
     String LOG_TAG = "SqlLog";
     public SQLBaseStudents(@Nullable Context context) {
@@ -31,7 +33,7 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query=String.format("CREATE TABLE " + DB_TABLE + "(" + KEY_ID
-                + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_SURNAME + " TEXT," + COLUMN_TYPE + " TEXT," + COLUMN_PRICE + " TEXT,"+ COLUMN_COUNT + " TEXT,"+ COLUMN_COUNT_CANCEL + " TEXT," + COLUMN_NUMBER + " TEXT" + ");");
+                + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_SURNAME + " TEXT," + COLUMN_TYPE + " TEXT," + COLUMN_PRICE + " TEXT,"+ COLUMN_COUNT + " TEXT,"+ COLUMN_COUNT_CANCEL + " INTEGER,"+ COLUMN_COLOR + " INTEGER," + COLUMN_NUMBER + " TEXT" + ");");
         db.execSQL(query);
 
     }
@@ -44,7 +46,7 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
             onCreate(db);
         }
     }
-    public void insertData(String name,String surname, String type, String price,String count, String number){
+    public void insertData(String name,String surname, String type, String price,String count, String number, int cancelCount){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(COLUMN_NAME,name);
@@ -53,6 +55,8 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
         values.put(COLUMN_PRICE,price);
         values.put(COLUMN_COUNT,count);
         values.put(COLUMN_NUMBER,number);
+        values.put(COLUMN_COUNT_CANCEL,cancelCount);
+        values.put(COLUMN_COLOR, Color.WHITE);
         db.insertWithOnConflict(DB_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
     }
     public ArrayList<String> getAllNames(){
@@ -98,6 +102,30 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
         while (cursor.moveToNext()){
             int index=cursor.getColumnIndex(COLUMN_PRICE);
             allPrice.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return allPrice;
+    }
+    public ArrayList<Integer> getAllCancelClass(){
+        ArrayList<Integer> allPrice=new ArrayList<>();
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_COUNT_CANCEL},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_COUNT_CANCEL);
+            allPrice.add(cursor.getInt(index));
+        }
+        cursor.close();
+        db.close();
+        return allPrice;
+    }
+    public ArrayList<Integer> getColor(){
+        ArrayList<Integer> allPrice=new ArrayList<>();
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_COLOR},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_COLOR);
+            allPrice.add(cursor.getInt(index));
         }
         cursor.close();
         db.close();
@@ -208,6 +236,92 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return typeClass;
+    }
+    public ArrayList<String> getCountCancelClass(){
+        ArrayList<String> alCount=new ArrayList<>();
+        String selection = COLUMN_COUNT_CANCEL + ">?";
+        String [] selectionArgs = new String [] {"0"};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_COUNT_CANCEL},selection,selectionArgs,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_COUNT_CANCEL);
+            alCount.add(String.valueOf(cursor.getInt(index)));
+        }
+        cursor.close();
+        db.close();
+        return alCount;
+    }
+    public ArrayList<String> getNameCancelClass(){
+        ArrayList<String> alCount=new ArrayList<>();
+        String selection = COLUMN_COUNT_CANCEL + ">?";
+        String [] selectionArgs = new String [] {"0"};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_NAME},selection,selectionArgs,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_NAME);
+            alCount.add(String.valueOf(cursor.getString(index)));
+        }
+        cursor.close();
+        db.close();
+        return alCount;
+    }
+    public ArrayList<String> getSurnameCancelClass(){
+        ArrayList<String> alCount=new ArrayList<>();
+        //String query = "SELECT " + COLUMN_SURNAME + " FROM " + DB_TABLE + " WHERE " + COLUMN_COUNT_CANCEL + " >0;";
+        String selection = COLUMN_COUNT_CANCEL + ">?";
+        String [] selectionArgs = new String [] {"0"};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_SURNAME},selection,selectionArgs,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_SURNAME);
+            alCount.add(String.valueOf(cursor.getString(index)));
+        }
+        cursor.close();
+        db.close();
+        return alCount;
+    }    public ArrayList<String> getSurnameWithoutCancelClass(){
+        ArrayList<String> alCount=new ArrayList<>();
+        String selection = COLUMN_COUNT_CANCEL + "=?";
+        String [] selectionArgs = new String [] {"0"};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_SURNAME},selection,selectionArgs,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_SURNAME);
+            alCount.add(String.valueOf(cursor.getString(index)));
+        }
+        cursor.close();
+        db.close();
+        return alCount;
+    }
+    public ArrayList<String> getMoneyCancelClass(){
+        ArrayList<String> alCount=new ArrayList<>();
+        String selection = COLUMN_COUNT_CANCEL + ">?";
+        String [] selectionArgs = new String [] {"0"};
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query(DB_TABLE,new String[]{COLUMN_PRICE},selection,selectionArgs,null,null,null);
+        while (cursor.moveToNext()){
+            int index=cursor.getColumnIndex(COLUMN_PRICE);
+            alCount.add(String.valueOf(cursor.getString(index)));
+        }
+        cursor.close();
+        db.close();
+        return alCount;
+    }
+    public void upgradeCountCancelClass(String surname, int countCancel){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_COUNT_CANCEL,countCancel);
+        String selection = COLUMN_SURNAME + "=?";
+        String [] selectionArgs = {surname};
+        db.update(DB_TABLE,contentValues,selection,selectionArgs);
+    }
+    public void upgradeColor(String surname, int color){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_COLOR,color);
+        String selection = COLUMN_SURNAME + "=?";
+        String [] selectionArgs = {surname};
+        db.update(DB_TABLE,contentValues,selection,selectionArgs);
     }
     public void removeAll () {
         SQLiteDatabase db = this.getReadableDatabase();

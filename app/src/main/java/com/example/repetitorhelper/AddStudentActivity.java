@@ -72,6 +72,6 @@ public class AddStudentActivity extends AppCompatActivity {
         count = edtCount.getText().toString();
         price = edtPrice.getText().toString();
         phone = edtPhone.getText().toString();
-        sqlBaseStudents.insertData(name,surname,type,price,count,phone);
+        sqlBaseStudents.insertData(name,surname,type,price,count,phone,0);
     }
 }
