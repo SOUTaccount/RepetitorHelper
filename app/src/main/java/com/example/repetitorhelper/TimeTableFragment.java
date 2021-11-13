@@ -1,11 +1,13 @@
 package com.example.repetitorhelper;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +30,7 @@ public class TimeTableFragment extends Fragment {
     SQLBaseStudents sqlBaseStudents;
     ArrayList<String> alNames, alSurnames, alCount, alMoney, alSum, alCountWithoutCancel, alSurnamesWithCancelClass;
     ArrayList<Integer> alCountCancel, alColors;
-    Button btnRefresh;
+    Button btnRefresh, btnProfile;
     int count, price, sum, countCancel;
 
     public TimeTableFragment() {
@@ -44,6 +46,7 @@ public class TimeTableFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_time_table, container, false);
         rvTimeTable = root.findViewById(R.id.rv_time_table);
         btnRefresh = root.findViewById(R.id.btn_refresh_month);
+        btnProfile = root.findViewById(R.id.btn_profile_repetitor);
         sqlBaseStudents = new SQLBaseStudents(getContext());
         if (sqlBaseStudents.checkTable() != 0){
         alNames = sqlBaseStudents.getAllNames();
@@ -76,9 +79,19 @@ public class TimeTableFragment extends Fragment {
                 for (int i = 0; i < alSurnames.size(); i++) {
                     sqlBaseStudents.upgradeColor(alSurnames.get(i),Color.WHITE);
                 }
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fl_content,TimeTableFragment.newInstance());
+                fragmentTransaction.commit();
             }
         });
         }
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RepetitorProfileActivity.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 }

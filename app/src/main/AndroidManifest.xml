@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RepetitorHelper">
-        <activity android:name=".RepetitorProfile"></activity>
+        <activity android:name=".RepetitorProfileActivity"></activity>
         <activity android:name=".CancelClassActivity" />
         <activity android:name=".StudentProfileActivity" />
         <activity android:name=".AddStudentActivity" />

@@ -59,6 +59,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.983" />
 
+                <Button
+                    android:id="@+id/btn_profile_repetitor"
+                    android:layout_width="37dp"
+                    android:layout_height="31dp"
+                    android:layout_marginEnd="192dp"
+                    android:layout_marginRight="192dp"
+                    android:background="@android:drawable/ic_dialog_info"
+                    app:backgroundTint="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_refresh_month"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.94" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
