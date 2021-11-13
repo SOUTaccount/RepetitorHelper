@@ -1,5 +1,6 @@
 package com.example.repetitorhelper;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toolbar;
 
@@ -24,8 +26,9 @@ import java.util.ArrayList;
 public class TimeTableFragment extends Fragment {
     RecyclerView rvTimeTable;
     SQLBaseStudents sqlBaseStudents;
-    ArrayList<String> alNames, alSurnames, alCount, alMoney, alSum, alCountWithoutCancel;
+    ArrayList<String> alNames, alSurnames, alCount, alMoney, alSum, alCountWithoutCancel, alSurnamesWithCancelClass;
     ArrayList<Integer> alCountCancel, alColors;
+    Button btnRefresh;
     int count, price, sum, countCancel;
 
     public TimeTableFragment() {
@@ -40,6 +43,7 @@ public class TimeTableFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_time_table, container, false);
         rvTimeTable = root.findViewById(R.id.rv_time_table);
+        btnRefresh = root.findViewById(R.id.btn_refresh_month);
         sqlBaseStudents = new SQLBaseStudents(getContext());
         if (sqlBaseStudents.checkTable() != 0){
         alNames = sqlBaseStudents.getAllNames();
@@ -49,6 +53,7 @@ public class TimeTableFragment extends Fragment {
         alCountCancel = sqlBaseStudents.getAllCancelClass();
         alCountWithoutCancel = sqlBaseStudents.getAllClassCounts();
         alColors = sqlBaseStudents.getColor();
+        alSurnamesWithCancelClass = sqlBaseStudents.getSurnameCancelClass();
             alSum = new ArrayList<>();
         for (int i = 0; i < alMoney.size();i++){
             count = Integer.parseInt(alCount.get(i));
@@ -62,6 +67,17 @@ public class TimeTableFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvTimeTable.setAdapter(timeTableAdapter);
         rvTimeTable.setLayoutManager(linearLayoutManager);
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < alSurnamesWithCancelClass.size(); i++) {
+                    sqlBaseStudents.upgradeCountCancelClass(alSurnamesWithCancelClass.get(i),0);
+                }
+                for (int i = 0; i < alSurnames.size(); i++) {
+                    sqlBaseStudents.upgradeColor(alSurnames.get(i),Color.WHITE);
+                }
+            }
+        });
         }
         return root;
     }

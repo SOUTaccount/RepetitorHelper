@@ -323,6 +323,22 @@ public class SQLBaseStudents extends SQLiteOpenHelper {
         String [] selectionArgs = {surname};
         db.update(DB_TABLE,contentValues,selection,selectionArgs);
     }
+    public void upgradeCountClass(String surname, String count){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_COUNT,count);
+        String selection = COLUMN_SURNAME + "=?";
+        String [] selectionArgs = {surname};
+        db.update(DB_TABLE,contentValues,selection,selectionArgs);
+    }
+    public void upgradePrice(String surname, String count){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_PRICE,count);
+        String selection = COLUMN_SURNAME + "=?";
+        String [] selectionArgs = {surname};
+        db.update(DB_TABLE,contentValues,selection,selectionArgs);
+    }
     public void removeAll () {
         SQLiteDatabase db = this.getReadableDatabase();
         db.delete(DB_TABLE,null,null);

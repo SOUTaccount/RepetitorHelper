@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +24,9 @@ public class StudentProfileActivity extends AppCompatActivity {
     TextView tvNameStudent;
     TextView tvSurnameStudent;
     TextView tvPhoneStudent;
-    TextView tvCountClassStudent;
+    EditText edtCountClassStudent;
     TextView tvIncome;
-    TextView tvPriceClassStudent;
+    EditText edtPriceClassStudent;
     TextView tvTypeClass;
     String LOG_TAG = "SqlLog";
     FloatingActionButton fabAccept;
@@ -37,9 +38,9 @@ public class StudentProfileActivity extends AppCompatActivity {
         tvNameStudent = findViewById(R.id.tv_student_name_profile);
         tvSurnameStudent = findViewById(R.id.tv_student_surname_profile);
         tvPhoneStudent = findViewById(R.id.tv_phone_student_profile);
-        tvCountClassStudent = findViewById(R.id.tv_count_class_profile);
+        edtCountClassStudent = findViewById(R.id.tv_count_class_profile);
         tvIncome = findViewById(R.id.tv_income_profile);
-        tvPriceClassStudent = findViewById(R.id.tv_price_class_profile);
+        edtPriceClassStudent = findViewById(R.id.tv_price_class_profile);
         tvTypeClass = findViewById(R.id.tv_type_of_class_profile);
         fabAccept = findViewById(R.id.floatingActionButton);
         Intent intent = getIntent();
@@ -49,6 +50,8 @@ public class StudentProfileActivity extends AppCompatActivity {
         fabAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sqlBaseStudents.upgradeCountClass(surname,edtCountClassStudent.getText().toString());
+                sqlBaseStudents.upgradePrice(surname,edtPriceClassStudent.getText().toString());
                 Toast.makeText(v.getContext(),"Данные обновлены",Toast.LENGTH_LONG).show();
                 Intent intent1 = new Intent(v.getContext(),MainActivity.class);
                 startActivity(intent1);
@@ -74,8 +77,8 @@ public class StudentProfileActivity extends AppCompatActivity {
         price = Integer.parseInt(priceClass);//делаем интом цену занятия
         income = count * price; // считаем прибыль за 1 месяц за 1 ученика
         incomeStr = String.valueOf(income);
-        tvCountClassStudent.setText(countClass);
-        tvPriceClassStudent.setText(priceClass);
+        edtCountClassStudent.setText(countClass);
+        edtPriceClassStudent.setText(priceClass);
         tvTypeClass.setText(typeClass);
 
         tvIncome.setText(incomeStr);
