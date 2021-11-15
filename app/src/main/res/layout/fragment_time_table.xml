@@ -43,34 +43,23 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.939" />
+                    app:layout_constraintVertical_bias="0.939"
+                    app:drawableRightCompat="@android:drawable/ic_dialog_info" />
 
-                <Button
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btn_refresh_month"
                     android:layout_width="54dp"
                     android:layout_height="53dp"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:background="@android:drawable/ic_popup_sync"
+                    android:background="#FFFFFF"
+                    android:src="@android:drawable/ic_popup_sync"
                     android:textColor="#FFFFFF"
-                    app:backgroundTint="#60ABCD"
+                    app:backgroundTint="#ffd0b0"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.983" />
-
-                <Button
-                    android:id="@+id/btn_profile_repetitor"
-                    android:layout_width="37dp"
-                    android:layout_height="31dp"
-                    android:layout_marginEnd="192dp"
-                    android:layout_marginRight="192dp"
-                    android:background="@android:drawable/ic_dialog_info"
-                    app:backgroundTint="@null"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_refresh_month"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.94" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

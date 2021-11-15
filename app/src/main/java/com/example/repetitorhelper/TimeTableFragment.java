@@ -1,5 +1,7 @@
 package com.example.repetitorhelper;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,7 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -30,7 +35,9 @@ public class TimeTableFragment extends Fragment {
     SQLBaseStudents sqlBaseStudents;
     ArrayList<String> alNames, alSurnames, alCount, alMoney, alSum, alCountWithoutCancel, alSurnamesWithCancelClass;
     ArrayList<Integer> alCountCancel, alColors;
-    Button btnRefresh, btnProfile;
+    Button btnProfile;
+    FloatingActionButton btnRefresh;
+    TextView repetitorProfile;
     int count, price, sum, countCancel;
 
     public TimeTableFragment() {
@@ -46,7 +53,7 @@ public class TimeTableFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_time_table, container, false);
         rvTimeTable = root.findViewById(R.id.rv_time_table);
         btnRefresh = root.findViewById(R.id.btn_refresh_month);
-        btnProfile = root.findViewById(R.id.btn_profile_repetitor);
+        repetitorProfile = root.findViewById(R.id.tv_time_table_title);
         sqlBaseStudents = new SQLBaseStudents(getContext());
         if (sqlBaseStudents.checkTable() != 0){
         alNames = sqlBaseStudents.getAllNames();
@@ -73,19 +80,34 @@ public class TimeTableFragment extends Fragment {
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < alSurnamesWithCancelClass.size(); i++) {
-                    sqlBaseStudents.upgradeCountCancelClass(alSurnamesWithCancelClass.get(i),0);
-                }
-                for (int i = 0; i < alSurnames.size(); i++) {
-                    sqlBaseStudents.upgradeColor(alSurnames.get(i),Color.WHITE);
-                }
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fl_content,TimeTableFragment.newInstance());
-                fragmentTransaction.commit();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Начало нового месяца")
+                        .setMessage("Вы уверены, что хотите обнулить пропуски и оплаты?")
+                        .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                for (int i = 0; i < alSurnamesWithCancelClass.size(); i++) {
+                                    sqlBaseStudents.upgradeCountCancelClass(alSurnamesWithCancelClass.get(i),0);
+                                }
+                                for (int i = 0; i < alSurnames.size(); i++) {
+                                    sqlBaseStudents.upgradeColor(alSurnames.get(i),Color.WHITE);
+                                }
+                                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.fl_content,TimeTableFragment.newInstance());
+                                fragmentTransaction.commit();
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                builder.create().show();
             }
         });
         }
-        btnProfile.setOnClickListener(new View.OnClickListener() {
+        repetitorProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RepetitorProfileActivity.class);

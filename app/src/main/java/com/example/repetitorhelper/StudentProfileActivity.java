@@ -1,12 +1,18 @@
 package com.example.repetitorhelper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ActionProvider;
+import androidx.core.view.MenuItemCompat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +36,7 @@ public class StudentProfileActivity extends AppCompatActivity {
     TextView tvTypeClass;
     String LOG_TAG = "SqlLog";
     FloatingActionButton fabAccept;
+    ImageButton btnCallStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         edtPriceClassStudent = findViewById(R.id.tv_price_class_profile);
         tvTypeClass = findViewById(R.id.tv_type_of_class_profile);
         fabAccept = findViewById(R.id.floatingActionButton);
+        btnCallStudent = findViewById(R.id.btn_call_student);
         Intent intent = getIntent();
         surname = intent.getStringExtra("surnames"); // Получаем переданный в интент стринг
         name = intent.getStringExtra("names"); // Получаем переданный в интент стринг
@@ -55,6 +63,15 @@ public class StudentProfileActivity extends AppCompatActivity {
                 Toast.makeText(v.getContext(),"Данные обновлены",Toast.LENGTH_LONG).show();
                 Intent intent1 = new Intent(v.getContext(),MainActivity.class);
                 startActivity(intent1);
+                finish();
+            }
+        });
+        btnCallStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(Intent.ACTION_CALL);
+                intent2.setData(Uri.parse("tel:" + phoneNum));
+                startActivity(intent2);
             }
         });
 

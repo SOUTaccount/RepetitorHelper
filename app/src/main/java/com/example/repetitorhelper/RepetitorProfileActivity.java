@@ -37,6 +37,7 @@ public class RepetitorProfileActivity extends AppCompatActivity {
             countCancelClass += Integer.parseInt(alCancelCount.get(i));
             priceWithCancel += Integer.parseInt(alCancelCount.get(i)) * Integer.parseInt(alPriceCancel.get(i));
         }
+        priceWithCancel = price - priceWithCancel;
         }
         tvCountClass.setText(String.valueOf(countClass));
         tvCountCancelClass.setText(String.valueOf(countCancelClass));

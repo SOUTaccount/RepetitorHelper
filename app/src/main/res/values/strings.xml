@@ -38,6 +38,11 @@
     <string name="btn_cancel_count">+1 Пропуск</string>
     <string name="add_cancel">Добавить пропуск</string>
     <string name="cancel_class">Отменено занятие</string>
+    <string name="count_students_repetitor">Количество учеников:</string>
+    <string name="count_class_repetitor">Количество занятий:</string>
+    <string name="all_price_of_month">Заработанная сумма денег без отмен занятий:</string>
+    <string name="all_price_of_month_with_cancel">Заработанная сумма денег с учетом отмен занятий:</string>
+    <string name="cancel_count_of_month"> Количество отмененных занятий:</string>
     <string name="description_accounting_class">Здесь вы можете отслеживать, а также вести учет не оплаченных и отмененных занятий.</string>
     <string name="description_students">Добавляйте новых учеников, следите за их количеством и информацией о каждом из них</string>
 </resources>
